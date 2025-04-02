@@ -10,7 +10,7 @@ readme = "README.md"
 authors = [
   { name = "Luca Medeiros", email = "lucamedeiros@outlook.com" },
 ]
-requires-python = ">=3.11"
+requires-python = ">=3.10"
 dynamic = ["dependencies"]
 
 [tool.setuptools.dynamic]
@@ -21,7 +21,7 @@ where = ["."]
 include = ["lang_sam", "lang_sam.*"]
 
 [tool.ruff]
-target-version = "py311"
+target-version = "py310"
 line-length = 120
 fix = true
 select = [
