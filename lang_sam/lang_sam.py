@@ -21,6 +21,7 @@ class LangSAM:
         texts_prompt: list[str],
         box_threshold: float = 0.3,
         text_threshold: float = 0.25,
+        verbose: bool = True,
     ):
         """Predicts masks for given images and text prompts using GDINO and SAM models.
 
@@ -61,7 +62,8 @@ class LangSAM:
 
             all_results.append(processed_result)
         if sam_images:
-            print(f"Predicting {len(sam_boxes)} masks")
+            if verbose:
+                print(f"Predicting {len(sam_boxes)} masks")
             masks, mask_scores, _ = self.sam.predict_batch(sam_images, xyxy=sam_boxes)
             for idx, mask, score in zip(sam_indices, masks, mask_scores):
                 all_results[idx].update(
@@ -70,7 +72,8 @@ class LangSAM:
                         "mask_scores": score,
                     }
                 )
-            print(f"Predicted {len(all_results)} masks")
+            if verbose:
+                print(f"Predicted {len(all_results)} masks")
         return all_results
 
 
